@@ -1,0 +1,17 @@
+{
+  "name": "websockets",
+  "version": "1.0.0",
+  "description": "",
+  "main": "src/server.js",
+  "scripts": {
+    "dev": "node --watch src/server.js",
+    "start": "node src/server.js"
+  },
+  "keywords": [],
+  "author": "kat-ausmus",
+  "license": "MIT",
+  "type": "module",
+  "dependencies": {
+    "ws": "^8.20.0"
+  }
+}
