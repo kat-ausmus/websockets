@@ -8,7 +8,7 @@ Playing around with Websockets
    run `npm install`
 2. Usage
  - run `npm start`
- - open `http://localhost:3000` in your browser
+ - open `http://localhost:8080` in your browser
 
 Deploys a message to all connected websocket clients.
 

@@ -20,15 +20,33 @@
             }
             .status-on {color: green;}
             .status-off {color: red;}
-
+            .deployMessage {
+                background-color: lightgray;
+                border-radius: 8px;
+                border: 1px solid #ccc;
+                padding: 5px 15px;
+                cursor: pointer;
+                color: #000;
+                margin-left: 10px;
+            }
+            .messageInput {
+                border-radius: 8px;
+                border: 1px solid #333;
+                padding: 5px 10px;
+                background-color: #222;
+                color: #fff;
+            }
+            .messageInput::placeholder {
+                color: yellowgreen;
+            }
         </style>
     </head>
 <body>
     <h1>Websocket Broadcast Console</h1>
     <p id="status" class="status-off">Connecting...</p>
     <form id="message-form">
-        <input type="text" id="message-input" placeholder="Send message..." required>
-        <button type="submit">Deploy Message</button>
+        <label for="message-input"></label><input class="messageInput" type="text" id="message-input" placeholder="Type message..." required>
+        <button class='deployMessage' type="submit">Deploy Message</button>
     </form>
     <h3> Live Stream Logs:</h3>
     <pre id="log"></pre>
@@ -40,7 +58,7 @@
     const messageInput = document.getElementById('message-input');
 
     // 1. Initialize WebSocket connection
-    const socket = new WebSocket('ws://localhost:8080');
+    const socket = new WebSocket('ws://' + window.location.host);
 
     const appendLog = (label, message) => {
         const entry = `${new Date().toLocaleTimeString()}: ${label}, ${message}\n`;
@@ -54,7 +72,7 @@
 
     // 2. Add event listener for message
     socket.addEventListener('open', () => {
-        statusEl.textContent = 'CONNECTED: ws://localhost:8080';
+        statusEl.textContent = 'CONNECTED: ' + socket.url;
         statusEl.className = 'status-on';
         appendLog('[SYSTEM]', 'Tunnel Established');
     });
